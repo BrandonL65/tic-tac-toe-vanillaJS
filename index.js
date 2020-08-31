@@ -8,7 +8,7 @@ let allTiles = document.querySelectorAll(".tile");
 class App {
   constructor() {
     this.turn = "X";
-    this.state = new Array(9).fill("");
+    this.state = new Array(9).fill("L");
     this.run();
   }
 
@@ -26,6 +26,7 @@ class App {
         console.log(tile.classList);
         this.updateTileText(tile);
         this.updateState(tile);
+        this.checkIfGameWon();
         this.changeTurn();
         this.changeTurnText();
         console.log(this.state);
@@ -42,6 +43,43 @@ class App {
   updateState(tile) {
     let tileNumber = tile.classList[1].split("-")[1];
     this.state[`${tileNumber - 1}`] = this.turn;
+  }
+  checkIfGameWon() {
+    let horizontalWins = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+    ];
+    let verticalWins = [
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+    ];
+    let diagonalWins = [
+      [2, 4, 6],
+      [0, 4, 8],
+    ];
+
+    for (let i = 0; i < horizontalWins.length; i++) {
+      let allSame = true;
+      for (let j = 1; j < horizontalWins[i].length; j++) {
+        let prevValue = horizontalWins[i][j - 1];
+        let currentValue = horizontalWins[i][j];
+        if (this.state[prevValue] !== this.state[currentValue]) {
+          allSame = false;
+        }
+        if (this.state[prevValue] === "L" || this.state[currentValue] === "L") {
+          allSame = false;
+        }
+      }
+      if (allSame) {
+        this.gameWon();
+        return;
+      }
+    }
+  }
+  gameWon() {
+    console.log(`${this.turn} WINS!!!!!!!!`);
   }
   changeTurn() {
     if (this.turn === "X") {
