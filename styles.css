@@ -22,13 +22,31 @@
 
 .tiles-container {
   margin-top: 4rem;
+  width: 80%;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: red;
+  margin: auto;
+}
+.row {
+  background-color: blue;
+  margin: 1rem;
+  display: flex;
+  width: 100%;
   justify-content: center;
 }
 
 .tile {
-  height: 100px;
-  width: 100px;
+  width: 150px;
+  height: 150px;
   border: 3px solid black;
-  margin: 0.5rem;
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile-inner-symbol {
+  font-size: 4rem;
 }
