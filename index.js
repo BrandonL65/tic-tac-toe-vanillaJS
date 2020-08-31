@@ -59,12 +59,36 @@ class App {
       [2, 4, 6],
       [0, 4, 8],
     ];
-
+    //check for horizontal wins
     for (let i = 0; i < horizontalWins.length; i++) {
       let allSame = true;
       for (let j = 1; j < horizontalWins[i].length; j++) {
         let prevValue = horizontalWins[i][j - 1];
         let currentValue = horizontalWins[i][j];
+        if (this.state[prevValue] !== this.state[currentValue]) {
+          allSame = false;
+        }
+        if (this.state[prevValue] === "L" || this.state[currentValue] === "L") {
+          allSame = false;
+        }
+      }
+      if (allSame) {
+        this.gameWon();
+        return;
+      }
+    }
+    //check for vertical wins
+    for (let i = 0; i < verticalWins.length; i++) {
+      let allSame = true;
+      for (let j = 1; j < verticalWins[i].length; j++) {
+        let prevValue = verticalWins[i][j - 1];
+        let currentValue = verticalWins[i][j];
+        console.log(
+          this.state[prevValue],
+          this.state[currentValue],
+          prevValue,
+          currentValue
+        );
         if (this.state[prevValue] !== this.state[currentValue]) {
           allSame = false;
         }
