@@ -1,5 +1,6 @@
 let tilesContainer = document.querySelector(".tiles-container");
 let turnText = document.querySelector(".turn");
+let winOrLoseText = document.querySelector(".winOrLoseText");
 let topRow = document.querySelector(".top-row");
 let middleRow = document.querySelector(".middle-row");
 let bottomRow = document.querySelector(".bottom-row");
@@ -9,6 +10,7 @@ class App {
   constructor() {
     this.turn = "X";
     this.state = new Array(9).fill("L");
+    this.disabled = false;
     this.run();
   }
 
@@ -23,13 +25,13 @@ class App {
   addClicksToTiles() {
     allTiles.forEach((tile) => {
       tile.addEventListener("click", () => {
-        console.log(tile.classList);
-        this.updateTileText(tile);
-        this.updateState(tile);
-        this.checkIfGameWon();
-        this.changeTurn();
-        this.changeTurnText();
-        console.log(this.state);
+        if (!this.disabled) {
+          this.updateTileText(tile);
+          this.updateState(tile);
+          this.checkIfGameWon();
+          this.changeTurn();
+          this.changeTurnText();
+        }
       });
     });
   }
@@ -116,6 +118,8 @@ class App {
   }
   gameWon() {
     console.log(`${this.turn} WINS!!!!!!!!`);
+    winOrLoseText.innerHTML = `${this.turn} WINS!`;
+    this.disabled = true;
   }
   changeTurn() {
     if (this.turn === "X") {

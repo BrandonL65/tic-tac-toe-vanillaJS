@@ -26,11 +26,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: red;
   margin: auto;
 }
 .row {
-  background-color: blue;
   margin: 1rem;
   display: flex;
   width: 100%;
@@ -49,4 +47,10 @@
 
 .tile-inner-symbol {
   font-size: 4rem;
+}
+
+.winOrLoseText {
+  font-size-adjust: 6rem;
+  text-align: center;
+  min-height: 30px;
 }
