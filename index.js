@@ -47,20 +47,6 @@ class App {
     this.state[`${tileNumber - 1}`] = this.turn;
   }
   checkIfGameWon() {
-    let horizontalWins = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-    ];
-    let verticalWins = [
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-    ];
-    let diagonalWins = [
-      [2, 4, 6],
-      [0, 4, 8],
-    ];
     //check for horizontal wins
     for (let i = 0; i < horizontalWins.length; i++) {
       let allSame = true;
@@ -131,3 +117,18 @@ class App {
 }
 
 new App();
+
+let horizontalWins = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+];
+let verticalWins = [
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+];
+let diagonalWins = [
+  [2, 4, 6],
+  [0, 4, 8],
+];
